@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--
+<%--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -13,27 +13,25 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
+--%>
+<%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Sample "Hello, World" Application</title>
+<title>Sample Application JSP Page</title>
 </head>
 <body>
 
 <div style="float: left; padding: 10px;">
 <img src="images/tomcat.gif" alt="" />
 </div>
-<h1>Sample "Hello, World" Application</h1>
-<p>This is the home page for a sample application used to illustrate the
-source directory organization of a web application utilizing the principles
-outlined in the Application Developer's Guide.
+<h1>Sample Application JSP Page</h1>
+This is the output of a JSP page that is part of the Hello, World
+application.
 
-<p>To prove that they work, you can execute either of the following links:</p>
-<ul>
-<li>To a <a href="hello.jsp">JSP page</a>.</li>
-<li>To a <a href="hello">servlet</a>.</li>
-</ul>
+
+<%= new String("Hello!") %>
 
 </body>
 </html>
