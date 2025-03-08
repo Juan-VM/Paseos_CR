@@ -7,3 +7,7 @@ create table usuarios(
 create table paseos(
 	provincia varchar(50)
 );
+
+create table comidas(
+	comida varchar(50)
+    )
