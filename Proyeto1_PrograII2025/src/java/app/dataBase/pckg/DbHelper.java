@@ -16,9 +16,6 @@ public class DbHelper {
 
     Connection conn;
 
-     public void prueba(){
-        System.out.println("Holaaa");
-    }
     
     public DbHelper() throws SQLException {
         try {
