@@ -19,7 +19,7 @@ public class DbHelper {
     public DbHelper() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/EventosCR", "root", "Admin$1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/PaseosCR", "root", "Admin$1234");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -35,7 +35,7 @@ public class DbHelper {
     
     public boolean validateLogin(String email, String pswd) throws SQLException {
         try {
-            PreparedStatement preState = conn.prepareStatement("SELECT * FROM Users WHERE email= ? AND pswd= ? AND userStatus = 1;");
+            PreparedStatement preState = conn.prepareStatement("SELECT * FROM usuarios WHERE email= ? AND pwd= ? AND user_status = 1;");
             preState.setString(1, email);
             preState.setString(2, pswd);
             ResultSet resultset = preState.executeQuery();
@@ -52,16 +52,13 @@ public class DbHelper {
         try {
             //otra forma
             PreparedStatement predStatement = 
-            conn.prepareStatement("INSERT INTO Users (ced, userName, pswd, email, creationDate, userStatus, ocupation) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            conn.prepareStatement("INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES (?, ?, ?, ?)");
             
             
-            predStatement.setString(1, user.getId());
-            predStatement.setString(2, user.getUserName());
-            predStatement.setString(3, user.getPassword());
-            predStatement.setString(4, user.getEmail());
-            predStatement.setString(5, user.getCreationDate());
-            predStatement.setInt(6, 1);
-            predStatement.setString(7, "User");
+            predStatement.setString(1, user.getUser_name());
+            predStatement.setString(2, user.getEmail());
+            predStatement.setString(3, user.getPwd());
+            predStatement.setInt(4, user.getUser_status());
             
             predStatement.executeUpdate();    
             
