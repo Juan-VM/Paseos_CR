@@ -1,87 +1,89 @@
-
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de VehÃ­culos</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="css/site.css" rel="stylesheet" type="text/css"/>
-</head>
-<body class="bg-light">
-
-<div class="top-bar d-none d-xl-block">
-    <div class="container d-flex justify-content-between">
-        <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="mailto:contact@priceautoscr.com">contact@priceautoscr.com</a></li>
-            <li class="list-inline-item">Lun - Vie: 7:30am - 5:00pm</li>
-            <li class="list-inline-item">Ok 34, Provincia De Puntarenas, Costa Rica</li>
-        </ul>
-        <a class="btn btn-warning btn-sm" href="/contact">ðŸ“… Book A Virtual Tour</a>
-    </div>
-</div>
-
-<!-- MenÃº principal -->
-<div class="header-main">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-2 col-auto">
-                <a class="navbar-brand" href="/">
-                    <img src="https://www.priceautoscr.com/PriceAuto/assets/media/general/logo.png" alt="Price Auto Sales">
-                </a>
+    <html>
+        <head>
+            <title>Inicio Sesion</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <link href="WEB-INF/css.css" rel="stylesheet" type="text/css"/>
+            <link href="styles.css" rel="stylesheet" type="text/css"/>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <style>
+                .btn-custom {
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                    padding: 15px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="p-5 bg-primary text-white text-center">
+                <h1>Paseos CR</h1>
+                <p>Encuentra tu paseo ideal!</p> 
             </div>
-            <div class="col-lg-auto col">
-                <div class="header-contacts d-none d-md-block">
-                    <span>ðŸ“ž Call Us Today: <a href="tel:+50627794545">+506 2779 4545</a></span>
-                </div>
-            </div>
-            <div class="col-lg d-none d-lg-block">
-                <nav class="navbar navbar-expand-md justify-content-end">
+
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container-fluid">
                     <ul class="navbar-nav">
-                        <li class="nav-item active"><a class="nav-link" href="menu.jsp">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/inventory">Inventory</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Services</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/contact">Schedule Appointment</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Home.html">Home</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/dealers">Locations</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Eventos.jsp">Paseos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="PublicarEvento.jsp">Publicar paseos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="MisEventos.jsp">Mis paseos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Historial.jsp">Historial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Cerrar sesion</a>
+                        </li>
                     </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
-<hr>
-
-<div class="text-center">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <c:forEach var="car" items="${cars}">
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm" style="width:18rem;height:25rem">
-                        <img src="<c:out value="${car.Photo}"/>"/>
-                        <div class="card-body">
-                            <h5 class="card-title"><c:out value="${car.Brand}"/> <c:out value="${car.Model}"/></h5>
-                            <p class="card-text">Engine: <c:out value="${car.Engine}"/></p>
-                            <a href="#" class="btn btn-primary">Ver detalles</a>
-                        </div>
-                    </div>
                 </div>
-            </c:forEach>
-        </div>
-    </div>
-</div>
+            </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+            <div class="eventos-container">
+                <div class="evento-card">
+                    <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
+                    <h3>Evento 1</h3>
+                    <p>Detalles del evento 1...</p>
+                    <button>Más Info</button>
+                </div>
+
+                <div class="evento-card">
+                    <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
+                    <h3>Evento 2</h3>
+                    <p>Detalles del evento 2...</p>
+                    <button>Más Info</button>
+                </div>
+
+                <div class="evento-card">
+                    <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
+                    <h3>Evento 3</h3>
+                    <p>Detalles del evento 3...</p>
+                    <button>Más Info</button>
+                </div>
+
+                <div class="evento-card">
+                    <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
+                    <h3>Evento 4</h3>
+                    <p>Detalles del evento 4...</p>
+                    <button>Más Info</button>
+                </div>
+            </div>
+
+            <div class="mt-5 p-4 bg-dark text-white text-center">
+                <p>vacacionescr@gmail.com</p>
+                <p>WhatsApp: +506 0102 0304</p>
+                <p>@Derechos reservados</p>
+            </div>
+        </body>
+    </html>
