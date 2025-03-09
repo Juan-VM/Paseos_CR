@@ -10,24 +10,31 @@
     </head>
     <body>
         <%
-        String username = request.getParameter("txtUserName");
-        String pasword = request.getParameter("txtPassword");
-        String email = request.getParameter("txtEmail");
+            String username = request.getParameter("txtUserName");
+            String pasword = request.getParameter("txtPassword");
+            String email = request.getParameter("txtEmail");
 
-        User usuarios = new User(username,pasword,email,1);
-        
-        DbHelper dbh = new DbHelper();
-        
-        dbh.saveUser(usuarios);
+            User usuarios = new User(username, pasword, email, 1);
+
+            DbHelper dbh = new DbHelper();
+
+            if (dbh.saveUser(usuarios)) {
+                RequestDispatcher rd = request.getRequestDispatcher("index.html");
+                rd.forward(request, response);
+                
+            }else{
+            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+                rd.forward(request, response);
+            }
 
 
         %>
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
     </body>
 </html>
