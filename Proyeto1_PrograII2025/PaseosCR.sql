@@ -16,3 +16,4 @@ create table paseos(
 INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES ("gerardo", "gerardoporras@gmal.com","123",1);
 
 describe usuarios;
+select * from usuarios;
