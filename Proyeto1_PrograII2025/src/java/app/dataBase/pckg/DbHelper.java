@@ -68,8 +68,8 @@ public class DbHelper {
                         "INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES (?, ?, ?, ?)");
 
             predStatement.setString(1, user.getUser_name());
-            predStatement.setString(2, user.getEmail());
-            predStatement.setString(3, user.getPwd());
+            predStatement.setString(2, user.getPwd());
+            predStatement.setString(3, user.getEmail());
             predStatement.setInt(4, user.getUser_status());
 
             predStatement.executeUpdate();
