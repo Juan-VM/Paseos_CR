@@ -1,4 +1,5 @@
 
+<%@page import="app.dataBase.pckg.DbHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,9 @@
         <%
             String email = request.getParameter("txtEmail");
             String pswd = request.getParameter("txtPwd");
+            DbHelper dbh = new DbHelper();
 
-            if (email.equals("juan@gmail.com") && pswd.equals("123")) {
+            if (dbh.validateLogin(email, pswd)) {
                 RequestDispatcher rd = request.getRequestDispatcher("Home.html");
                 rd.forward(request, response);
             }else{

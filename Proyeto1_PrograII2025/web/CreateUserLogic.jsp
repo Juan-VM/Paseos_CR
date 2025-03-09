@@ -1,4 +1,6 @@
 
+<%@page import="app.dataBase.pckg.DbHelper"%>
+<%@page import="app.model.pckg.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,6 +9,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+        String username = request.getParameter("txtUserName");
+        String pasword = request.getParameter("txtPassword");
+        String email = request.getParameter("txtEmail");
+
+        User usuarios = new User(username,pasword,email,1);
+        
+        DbHelper dbh = new DbHelper();
+        
+        dbh.saveUser(usuarios);
+
+
+        %>
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>
