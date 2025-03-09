@@ -17,4 +17,6 @@ INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES ("gerardo", "ge
 
 describe usuarios;
 
-select*from usuarios;
+
+select * from usuarios;
+
