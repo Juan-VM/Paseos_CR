@@ -40,19 +40,17 @@ public class DbHelper {
         }
     }
 
-    public boolean validateLogin(String email, String pswd) throws SQLException {
+    public ResultSet validateLogin(String email, String pswd) throws SQLException {
         try {
             PreparedStatement preState = conn.prepareStatement("SELECT * FROM usuarios WHERE email= ? AND pwd= ? AND user_status = 1;");
             preState.setString(1, email);
             preState.setString(2, pswd);
             ResultSet resultset = preState.executeQuery();
-            while (resultset.next()) {
-                return true;
-            }
+            return resultset;
         } catch (SQLException ex) {
             //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
         }
-        return false;
+        return null;
     }
 
     public boolean saveUser(User user) throws SQLException {
@@ -85,14 +83,16 @@ public class DbHelper {
     public boolean saveEvent(Event event) throws SQLException {
         try {
             PreparedStatement predStatement
-                    = conn.prepareStatement("INSERT INTO PageEvents (eventName, eventDescription, eventDate, photo, ubication, ticketsAvailable) VALUES (?, ?, ?, ?, ?, ?)");
+                    = conn.prepareStatement("INSERT INTO paseos (e_userId, e_name, e_description, e_date, e_photo, e_ubication, e_tickets)"
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-            predStatement.setString(1, event.name);
-            predStatement.setString(2, event.description);
-            predStatement.setString(3, event.date);
-            predStatement.setString(4, event.photo);
-            predStatement.setString(5, event.ubication);
-            predStatement.setInt(6, event.ticketsAvailable);
+            predStatement.setInt(1, event.getId());
+            predStatement.setString(2, event.getName());
+            predStatement.setString(3, event.getDescription());
+            predStatement.setString(4, event.getDate());
+            predStatement.setString(5, event.getPhoto());
+            predStatement.setString(6, event.getUbication());
+            predStatement.setInt(7, event.getTicketsAvailable());
 
             predStatement.executeUpdate();
 
@@ -114,10 +114,24 @@ public class DbHelper {
         }
         return null;
     }
+    
+    public int getUserId(String email) throws SQLException {
+        int userId = 0;
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT id FROM usuarios WHERE email= ?;");
+            predStatement.setString(1, email);
+            ResultSet resultset = predStatement.executeQuery();
+            userId = resultset.getInt("id");
+            return userId;
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return userId;
+    }
 
     public ResultSet getEvents() throws SQLException {
         try {
-            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM Events;");
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM paseos;");
             ResultSet resultset = predStatement.executeQuery();
             return resultset;
         } catch (SQLException ex) {

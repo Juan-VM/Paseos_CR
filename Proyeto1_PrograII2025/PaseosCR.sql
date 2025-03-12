@@ -10,13 +10,18 @@ create table usuarios(
 );
 
 create table paseos(
-	provincia varchar(50)
+	e_id int not null AUTO_INCREMENT,
+    e_userId int not null,
+    e_name varchar(100),
+    e_description varchar(200),
+    e_date varchar(100),
+    e_photo varchar(100),
+    e_ubication varchar(100),
+	e_tickets int,
+    Primary key(e_id)
 );
 
 INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES ("gerardo", "gerardoporras@gmal.com","123",1);
-
 describe usuarios;
-
-
 select * from usuarios;
-
+select * from paseos;

@@ -1,3 +1,26 @@
+
+<%@page import="java.sql.ResultSet"%>
+<%@page import="app.dataBase.pckg.DbHelper"%>
+<%@page import="app.model.pckg.Event"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    DbHelper dbh = new DbHelper();
+    ResultSet rs = dbh.getEvents();
+    ArrayList<Event> events = new ArrayList<Event>();
+
+    while (rs.next()) {
+        Event event = new Event(
+                rs.getInt("e_id"),
+                rs.getString("e_name"),
+                rs.getString("e_description"),
+                rs.getString("e_date"),
+                rs.getString("e_photo"),
+                rs.getString("e_ubication"),
+                rs.getInt("e_tickets"));
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
     <html>
@@ -50,33 +73,57 @@
                 </div>
             </nav>
 
+            <div class="text-center">
+                <div class="container mt-5">
+                    <div class="row justify-content-center">
+                        <%
+                            for (Event event : events) {
+                        %>
+                        <div class="col-md-4 mb-3">
+                            <div class="card shadow-sm" style="width:18rem;height:25rem">
+                                <img src="<%=event.getPhoto()%>" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= %> <%= %> <%= %></h5>
+                                    <p class="card-text">Engine: <%= %></p>
+                                    <a href="carDetails.jsp?id=<%= %>" class="btn btn-primary">See details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="eventos-container">
                 <div class="evento-card">
                     <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
                     <h3>Evento 1</h3>
                     <p>Detalles del evento 1...</p>
-                    <button>Más Info</button>
+                    <button>MÃ¡s Info</button>
                 </div>
 
                 <div class="evento-card">
                     <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
                     <h3>Evento 2</h3>
                     <p>Detalles del evento 2...</p>
-                    <button>Más Info</button>
+                    <button>MÃ¡s Info</button>
                 </div>
 
                 <div class="evento-card">
                     <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
                     <h3>Evento 3</h3>
                     <p>Detalles del evento 3...</p>
-                    <button>Más Info</button>
+                    <button>MÃ¡s Info</button>
                 </div>
 
                 <div class="evento-card">
                     <img src="img/playcoco.jpeg" class="rounded" alt="playacoco"/>
                     <h3>Evento 4</h3>
                     <p>Detalles del evento 4...</p>
-                    <button>Más Info</button>
+                    <button>MÃ¡s Info</button>
                 </div>
             </div>
 
