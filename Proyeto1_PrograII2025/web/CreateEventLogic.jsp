@@ -12,6 +12,13 @@
     </head>
     <body>
         <%
+            String email = (String) session.getAttribute("email");
+            if (email == null) {
+                request.setAttribute("errorMensage", "La sesion esta inactiva, debes iniciar sesion.");
+                RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
+                rd.forward(request, response);
+            }
+
             DbHelper dbh = new DbHelper();
             int userId = (int) session.getAttribute("userId");
             String name = request.getParameter("txtName");

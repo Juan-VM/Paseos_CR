@@ -15,7 +15,7 @@
             String pswd = request.getParameter("txtPwd");
             DbHelper dbh = new DbHelper();
 
-            session = request.getSession(false);
+            request.getSession(false);
 
             if (session != null) {
                 session.invalidate();
