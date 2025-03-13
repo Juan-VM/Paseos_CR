@@ -29,10 +29,10 @@
                         <a class="nav-link " href="Home.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="CatálogoPaseos.jsp">Paseos</a>
+                        <a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="PublicarEvento.jsp">Publicar paseos</a>
+                        <a class="nav-link active" href="PublicarPaseo.jsp">Publicar paseos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="MisEventos.jsp">Mis paseos</a>
@@ -41,13 +41,33 @@
                         <a class="nav-link" href="Historial.jsp">Historial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Cerrar sesion</a>
+                        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
-        <div class="container mt-5">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cerrar sesion</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Estas seguro de que deseas cerrar sesion?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                        <a href="Logout.jsp" class="btn btn-danger">Aceptar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5 mb-5">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="card shadow-lg p-4 rounded" style="max-width: 500px; width: 100%;">
                     <h4 class="text-center text-primary mb-3"> <b>Publicar paseo</b> </h4>
@@ -58,24 +78,20 @@
                             <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Ingresa el nombre del paseo" required>
                         </div>
 
-
                         <div class="mb-3">
                             <label for="txtDescription" class="form-label"><i class="fas fa-info-circle"></i> <b>Descripcion del paseo</b></label>
                             <input type="text" class="form-control" name="txtDescription" id="txtDescription" placeholder="Ingresa la descripcion del paseo" required>
                         </div>
-
 
                         <div class="mb-3">
                             <label for="txtDate" class="form-label"><i class="fas fa-calendar-alt"></i> <b>Fecha del paseo</b></label>
                             <input type="date" class="form-control" name="txtDate" id="txtDate" placeholder="Ingresa la fecha del paseo" required>
                         </div>
 
-
                         <div class="mb-3">
                             <label for="txtUbication" class="form-label"><i class="fas fa-map-marker-alt"></i> <b>Ubicacion del paseo</b></label>
                             <input type="text" class="form-control" name="txtUbication" id="txtUbication" placeholder="Ingresa la ubicacion del paseo" required>
                         </div>
-
 
                         <div class="mb-3">
                             <label for="txtTickets" class="form-label"><i class="fas fa-ticket-alt"></i> <b>Entradas disponibles</b></label>
@@ -86,13 +102,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-
-        <div class="mt-5 p-4 bg-dark text-white text-center">
-            <p>vacacionescr@gmail.com</p>
-            <p>WhatsApp: +506 0102 0304</p>
-            <p>@Derechos reservados</p>
         </div>
     </body>
 </html>

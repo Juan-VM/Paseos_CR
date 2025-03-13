@@ -25,3 +25,6 @@ INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES ("gerardo", "ge
 describe usuarios;
 select * from usuarios;
 select * from paseos;
+Delete from usuarios where id = 3;
+SELECT * FROM paseos WHERE e_id= 2;
+SELECT * FROM paseos INNER JOIN usuarios ON paseos.e_userId = usuarios.id WHERE paseos.e_id = 2;

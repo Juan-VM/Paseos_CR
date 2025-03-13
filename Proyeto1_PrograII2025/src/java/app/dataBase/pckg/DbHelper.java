@@ -86,7 +86,7 @@ public class DbHelper {
                     = conn.prepareStatement("INSERT INTO paseos (e_userId, e_name, e_description, e_date, e_photo, e_ubication, e_tickets)"
                             + "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-            predStatement.setInt(1, event.getId());
+            predStatement.setInt(1, event.getUser_id());
             predStatement.setString(2, event.getName());
             predStatement.setString(3, event.getDescription());
             predStatement.setString(4, event.getDate());
@@ -136,6 +136,17 @@ public class DbHelper {
             return resultset;
         } catch (SQLException ex) {
             //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet getEvent(int eventId) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM paseos INNER JOIN usuarios ON paseos.e_userId = usuarios.id WHERE paseos.e_id = ?;");
+            predStatement.setInt(1, eventId);
+            return predStatement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
