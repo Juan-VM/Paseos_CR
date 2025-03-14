@@ -35,6 +35,8 @@ public class Event {
         this.ubication = ubication;
         this.ticketsAvailable = ticketsAvailable;
     }
+    
+    
 
     public int getId() {
         return id;
