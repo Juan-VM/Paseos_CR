@@ -118,7 +118,7 @@
                                     <h5 class="card-title"><%=event.getName()%></h5>
                                     <p class="card-text">Descripcion: <%=event.getDescription()%></p>
                                     <div class="mt-auto">
-                                        <a href="PaseoDetails.jsp?id=<%=event.getId()%>" class="btn btn-primary w-100"><%= event.getId()%></a>
+                                        <a href="PaseoDetails.jsp?id=<%=event.getId()%>" class="btn btn-primary w-100"><b>Ver detalles</b></a>
                                     </div>
                                 </div>
                             </div>

@@ -41,7 +41,7 @@
                     <p class="card-text">
                         Tu paseo se ha publicado con exito.
                     </p>
-                    <a href="Home.html" class="btn btn-primary w-100"><i class="fas fa-check"></i> Aceptar</a>
+                    <a href="CatalogoPaseos.jsp" class="btn btn-primary w-100"><i class="fas fa-check"></i> Aceptar</a>
                 </div>
             </div>
         </div>

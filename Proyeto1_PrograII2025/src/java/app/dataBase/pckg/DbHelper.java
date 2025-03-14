@@ -150,4 +150,44 @@ public class DbHelper {
         }
         return null;
     }
+    
+    public boolean updatePaseo(int paseoId, Event event) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("UPDATE paseos SET e_name = ?, e_description = ?, e_date = ?, e_ubication = ?, e_tickets = ? WHERE e_id = ?;");
+
+            predStatement.setString(1, event.getName());
+            predStatement.setString(2, event.getDescription());
+            predStatement.setString(3, event.getDate());
+            predStatement.setString(4, event.getUbication());
+            predStatement.setInt(5, event.getTicketsAvailable());
+            predStatement.setInt(6, paseoId);
+
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean deleteEvent(int eventId, int user_id) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("DELETE FROM paseos WHERE e_id = ? AND e_userId = ?;");
+
+            predStatement.setInt(1, eventId);
+            predStatement.setInt(2, user_id);
+
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
 }

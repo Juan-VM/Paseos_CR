@@ -79,8 +79,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="txtDescription" class="form-label"><i class="fas fa-info-circle"></i> <b>Descripcion del paseo</b></label>
-                            <input type="text" class="form-control" name="txtDescription" id="txtDescription" placeholder="Ingresa la descripcion del paseo" required>
+                            <label for="txtDescription" class="form-label"><i class="fas fa-info-circle"></i> <b>Descripción del paseo</b></label>
+                            <textarea class="form-control" name="txtDescription" id="txtDescription" placeholder="Ingresa la descripción del paseo" rows="4"                                    maxlength="200" required></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -95,7 +95,7 @@
 
                         <div class="mb-3">
                             <label for="txtTickets" class="form-label"><i class="fas fa-ticket-alt"></i> <b>Entradas disponibles</b></label>
-                            <input type="number" class="form-control" name="txtTickets" id="txtTickets" placeholder="Ingresa las entradas disponibles" min="1" required>
+                            <input type="number" class="form-control" name="txtTickets" id="txtTickets" placeholder="Ingresa las entradas disponibles" min="1"                                  required>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Publicar</button>
