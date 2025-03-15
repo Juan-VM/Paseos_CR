@@ -22,9 +22,3 @@ create table paseos(
    
 );
 
-INSERT INTO usuarios (user_name, email, pwd, user_status) 
-VALUES ("Erick", "ErickMora@gmail.com", "123", 1);
-
-
-
-
