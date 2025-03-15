@@ -100,7 +100,5 @@ public class Event {
 
     public void setTicketsAvailable(int ticketsAvailable) {
         this.ticketsAvailable = ticketsAvailable;
-    }
-
-    
+    } 
 }

@@ -19,12 +19,12 @@ create table paseos(
     e_ubication varchar(100),
 	e_tickets int,
     Primary key(e_id)
+   
 );
 
-INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES ("gerardo", "gerardoporras@gmal.com","123",1);
-describe usuarios;
-select * from usuarios;
-select * from paseos;
-Delete from usuarios where id = 3;
-SELECT * FROM paseos WHERE e_id= 2;
-SELECT * FROM paseos INNER JOIN usuarios ON paseos.e_userId = usuarios.id WHERE paseos.e_id = 2;
+INSERT INTO usuarios (user_name, email, pwd, user_status) 
+VALUES ("Erick", "ErickMora@gmail.com", "123", 1);
+
+
+
+

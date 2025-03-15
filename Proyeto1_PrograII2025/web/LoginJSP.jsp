@@ -9,10 +9,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-
         <%
             String email = request.getParameter("txtEmail");
             String pswd = request.getParameter("txtPwd");
+
+            
+            if (email == null || !email.endsWith("@gmail.com")) {
+                request.setAttribute("errorMensage", "El correo electrónico debe ser de dominio @gmail.com");
+                RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
+                rd.forward(request, response);
+                return; 
+            }
+
             DbHelper dbh = new DbHelper();
 
             request.getSession(false);
@@ -34,11 +42,10 @@
                 rd.forward(request, response);
                 return;
             } else {
-                request.setAttribute("errorMensage", "El usuario ingresado no esta registrado");
+                request.setAttribute("errorMensage", "El usuario ingresado no está registrado");
                 RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
                 rd.forward(request, response);
             }
         %>
-
     </body>
 </html>
