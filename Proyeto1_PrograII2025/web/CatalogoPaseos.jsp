@@ -41,23 +41,28 @@
                 background-position: center;
                 color: white;
                 font-family: 'Arial', sans-serif;
-                padding-top: 50px;
+                margin-top: 0; /* Eliminar margen superior del body */
+                padding-top: 0; /* Eliminar padding superior */
             }
 
             /* Encabezado */
             .header {
-                background-color: rgba(0, 0, 0, 0.5);
-                padding: 40px 0;
+                background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+                padding: 36px 0; /* Aumentar padding si es necesario */
                 text-align: center;
+                position: relative;
+                top: 0;
+                width: 100%;
+                margin: 0;
             }
 
-            .header h1 {
-                font-size: 3rem;
+            .header h3 {
+                font-size: 3rem; /* Aumentar el tamaño de la fuente del título */
                 font-weight: bold;
             }
 
             .header p {
-                font-size: 1.25rem;
+                font-size: 2rem; /* Aumentar el tamaño de la fuente del subtítulo */
                 font-weight: 300;
             }
 
@@ -184,7 +189,7 @@
 
         <!-- Encabezado -->
         <div class="header">
-            <h1>Paseos CR</h1>
+            <h3>Paseos CR</h3>
             <p>Encuentra tu paseo ideal!</p>
         </div>
 

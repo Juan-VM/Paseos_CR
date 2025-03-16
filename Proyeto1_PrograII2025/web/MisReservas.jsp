@@ -26,16 +26,20 @@
                 background-size: cover;
                 background-position: center;
                 color: white;
-                
                 font-family: 'Arial', sans-serif;
-                padding-top: 50px;
+                margin-top: 0; /* Eliminar margen superior del body */
+                padding-top: 0; /* Eliminar padding superior */
             }
 
             /* Encabezado */
             .header {
                 background-color: rgba(0, 0, 0, 0.5);
-                padding: 40px 0;
+                padding: 46px 0; /* Aumentar padding si es necesario */
                 text-align: center;
+                position: relative;
+                top: 0;
+                width: 100%;
+                margin: 0;
             }
 
             .header h1 {
@@ -166,7 +170,7 @@
                 RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
                 rd.forward(request, response);
             }
-            
+
             int userId = (int) session.getAttribute("userId");
             DbHelper dbh = new DbHelper();
             ResultSet rs = dbh.getReserves(userId);
@@ -188,8 +192,8 @@
 
         <!-- Encabezado -->
         <div class="header">
-            <h1>Paseos CR</h1>
-            <p>Encuentra tu paseo ideal!</p>
+            <h1>Mis reservas</h1>
+            <p>Explora la Belleza Natural de Costa Rica</p>
         </div>
 
         <!-- Barra de navegación -->
