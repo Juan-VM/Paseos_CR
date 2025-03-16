@@ -13,7 +13,11 @@ describe usuarios;
 select * from usuarios;
 
 create table reservas(
-
+	reserv_id int not null AUTO_INCREMENT,
+    event_id int not null,
+    user_id int not null,
+    r_tickets int not null,
+	PRIMARY KEY (reserv_id)
 );
 
 delete from paseos where e_id = 1;
@@ -44,4 +48,7 @@ VALUES (1, "Monteverde", "Explora el bosque nuboso y su biodiversidad única.", 
 INSERT INTO usuarios (user_name, email, pwd, user_status)
 VALUES ("Marco", "marcoesteban777@gmail.com", "123", 1);
 
+INSERT INTO reservas(event_id,user_id,r_tickets) VALUES (1, 2, 10);
+
+Select * from reservas;
 

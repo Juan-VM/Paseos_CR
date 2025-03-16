@@ -27,8 +27,8 @@ public class DbHelper {
             throw new SQLException("Error al cargar el driver MySQL.", ex);
 
         } catch (SQLException ex) {
-        Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, "Error al conectar con la base de datos.", ex);
-        throw ex;
+            Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, "Error al conectar con la base de datos.", ex);
+            throw ex;
         }
     }
 
@@ -55,15 +55,15 @@ public class DbHelper {
 
     public boolean saveUser(User user) throws SQLException {
         if (conn == null) {
-        Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, "Error: La conexión a la base de datos es NULL.");
-        return false;
+            Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, "Error: La conexión a la base de datos es NULL.");
+            return false;
         }
-        
+
         try {
             //otra forma
             PreparedStatement predStatement
                     = conn.prepareStatement(
-                        "INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES (?, ?, ?, ?)");
+                            "INSERT INTO usuarios (user_name, email, pwd, user_status) VALUES (?, ?, ?, ?)");
 
             predStatement.setString(1, user.getUser_name());
             predStatement.setString(2, user.getPwd());
@@ -77,7 +77,7 @@ public class DbHelper {
         } catch (SQLException ex) {
             Logger.getLogger(DbHelper.class.getName()).log(Level.SEVERE, "Error al guardar el usuario.", ex);
             return false;
-    }
+        }
     }
 
     public boolean saveEvent(Event event) throws SQLException {
@@ -114,7 +114,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public int getUserId(String email) throws SQLException {
         int userId = 0;
         try {
@@ -139,7 +139,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public ResultSet getEvent(int eventId) throws SQLException {
         try {
             PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM paseos INNER JOIN usuarios ON paseos.e_userId = usuarios.id WHERE paseos.e_id = ?;");
@@ -150,7 +150,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public boolean updatePaseo(int paseoId, Event event) throws SQLException {
         try {
             PreparedStatement predStatement
@@ -172,7 +172,7 @@ public class DbHelper {
             return false;
         }
     }
-    
+
     public boolean deleteEvent(int eventId, int user_id) throws SQLException {
         try {
             PreparedStatement predStatement
@@ -181,6 +181,42 @@ public class DbHelper {
             predStatement.setInt(1, eventId);
             predStatement.setInt(2, user_id);
 
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
+
+    public boolean reservarPaseo(int paseoId, int userId, int r_tickets) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("INSERT INTO reservas(event_id, user_id, r_tickets) VALUES (?, ?, ?);");
+
+            predStatement.setInt(1, paseoId);
+            predStatement.setInt(2, userId);
+            predStatement.setInt(3, r_tickets);
+
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
+
+    public boolean actualizarTickets(int eventId, int newTickets) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("UPDATE paseos SET e_tickets = ? WHERE e_id = ?;");
+
+            predStatement.setInt(1, newTickets);
+            predStatement.setInt(2, eventId);
             predStatement.executeUpdate();
 
             return true;
