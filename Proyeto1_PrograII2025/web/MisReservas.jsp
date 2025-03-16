@@ -1,38 +1,24 @@
-<%@page import="java.sql.ResultSet"%>
+<%-- 
+    Document   : MisReservas
+    Created on : 16 mar 2025, 7:39:02
+    Author     : Charly Cimino
+--%>
+
+<%@page import="app.model.pckg.Reserv"%>
 <%@page import="app.dataBase.pckg.DbHelper"%>
-<%@page import="app.model.pckg.Event"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%
-    DbHelper dbh = new DbHelper();
-    ResultSet rs = dbh.getEvents();
-    ArrayList<Event> events = new ArrayList<Event>();
-
-    while (rs.next()) {
-        Event event = new Event(
-                rs.getInt("e_id"),
-                rs.getInt("e_userId"),
-                rs.getString("e_name"),
-                rs.getString("e_description"),
-                rs.getString("e_date"),
-                rs.getString("e_photo"),
-                rs.getString("e_ubication"),
-                rs.getInt("e_tickets"));
-        events.add(event);
-    }
-%>
+<%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
-<html lang="es">
+<html>
     <head>
-        <title>Inicio Sesion</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link href="WEB-INF/css.css" rel="stylesheet" type="text/css"/>
         <link href="styles.css" rel="stylesheet" type="text/css"/>
-
         <style>
             /* Establecer la imagen de fondo */
             body {
@@ -172,13 +158,30 @@
         </style>
     </head>
     <body>
-
         <%
             String email = (String) session.getAttribute("email");
             if (email == null) {
                 request.setAttribute("errorMensage", "La sesion esta inactiva, debes iniciar sesion.");
                 RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
                 rd.forward(request, response);
+            }
+            
+            int userId = (int) session.getAttribute("userId");
+            DbHelper dbh = new DbHelper();
+            ResultSet rs = dbh.getReserves(userId);
+            ArrayList<Reserv> reserves = new ArrayList<Reserv>();
+
+            while (rs.next()) {
+                Reserv reserv = new Reserv(
+                        rs.getString("e_name"),
+                        rs.getString("e_photo"),
+                        rs.getString("e_date"),
+                        rs.getInt("reserv_id"),
+                        rs.getInt("event_id"),
+                        rs.getInt("user_id"),
+                        rs.getInt("r_tickets"));
+
+                reserves.add(reserv);
             }
         %>
 
@@ -193,11 +196,10 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link " href="home.jsp">Home</a>
+                        <a class="nav-link" href="home.jsp">Home</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link active" href="CatalogoPaseos.jsp">Paseos</a>
+                        <a class="nav-link " href="CatalogoPaseos.jsp">Paseos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseos</a>
@@ -206,7 +208,7 @@
                         <a class="nav-link" href="Historial.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>
+                        <a class="nav-link active" href="MisReservas.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
@@ -236,21 +238,52 @@
             </div>
         </div>
 
+        <div class="modal" id="cancelarReserva">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cancelar reserva</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas cancelar la reserva al evento?
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="CancelarReserva.jsp" class="btn btn-danger">Aceptar</a>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Contenedor de eventos -->
         <div class="container mt-5">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-center">
                 <%
-                    for (Event event : events) {
+                    for (Reserv reserv : reserves) {
                 %>
                 <div class="col mb-4">
                     <div class="card">
-                        <img src="<%=event.getPhoto()%>" class="card-img-top" />
+                        <img src="<%=reserv.getPhoto()%>" class="card-img-top" />
                         <div class="card-body">
-                            <h5 class="card-title"><%=event.getName()%></h5>
-                            <p class="card-text">Descripcion: <%=event.getDescription()%></p>
-                            <div class="mt-auto">
-                                <a href="PaseoDetails.jsp?id=<%=event.getId()%>" class="btn btn-primary w-100"><b>Ver detalles</b></a>
-                            </div>
+                            <h5 class="card-title text-center"><%=reserv.getName()%></h5>
+                            <br>
+                            <p class="card-text"><i class="fas fa-calendar-alt"></i> Fecha: <%=reserv.getDate()%>
+                            </p>
+                            <p class="card-text"><i class="fas fa-ticket-alt"></i> Entradas reservadas: <%=reserv.getReservedTickets()%>
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center p-3" style="background-color: #f8f9fa;
+                             border-top: 1px solid #ddd;
+                             gap: 10px;">
+
+                            <a href="DetallesReserva.jsp?reservId=<%=reserv.getReservId()%>" class="btn btn-warning btn-lg" style="border-radius: 20px;
+                               padding: 12px 20px;
+                               font-size: 1.5rem;
+                               flex: 1;">
+                                <b>Detalles</b>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -259,6 +292,5 @@
                 %>
             </div>
         </div>
-
     </body>
 </html>

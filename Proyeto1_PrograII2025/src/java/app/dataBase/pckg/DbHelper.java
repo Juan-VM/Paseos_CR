@@ -226,4 +226,102 @@ public class DbHelper {
             return false;
         }
     }
+
+    public ResultSet getTable(String table) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM ?;");
+            predStatement.setString(1, table);
+            return predStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+
+    public ResultSet getTable(String table, String column, int id) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM ? WHERE ?= ?;");
+            predStatement.setString(1, table);
+            predStatement.setString(2, column);
+            predStatement.setInt(3, id);
+            return predStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet getReserves(int userId) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas INNER JOIN paseos ON reservas.event_id = paseos.e_id WHERE reservas.user_id = ?;");
+            predStatement.setInt(1, userId);
+
+            return predStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet getReserv(int reservId) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas WHERE reserv_id = ?;");
+            predStatement.setInt(1, reservId);
+
+            return predStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+    
+    public ResultSet getReservFullInfo(int reservId) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas INNER JOIN paseos ON reservas.event_id = paseos.e_id WHERE reservas.reserv_id = ?;");
+            predStatement.setInt(1, reservId);
+
+            return predStatement.executeQuery();
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+    
+    public boolean cancelarReserva(int reservId) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("Delete from reservas WHERE reserv_id = ?;");
+
+            predStatement.setInt(1, reservId);
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean actualizarReserva(int reservId, int newTickets) throws SQLException {
+        try {
+            PreparedStatement predStatement
+                    = conn.prepareStatement("UPDATE reservas SET r_tickets = ? WHERE reserv_id = ?;");
+
+            predStatement.setInt(1, newTickets);
+            predStatement.setInt(2, reservId);
+            predStatement.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+            return false;
+        }
+    }
 }

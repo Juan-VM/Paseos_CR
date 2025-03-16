@@ -1,10 +1,7 @@
 
-<%@page import="app.model.pckg.Event"%>
 <%@page import="app.dataBase.pckg.DbHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -115,10 +112,8 @@
                 border-radius: 10px;
             }
         </style>
-
     </head>
     <body>
-
         <%
             String email = (String) session.getAttribute("email");
 
@@ -128,13 +123,10 @@
                 rd.forward(request, response);
             }
 
-            int userId = (int) session.getAttribute("userId");
-            String idString = request.getParameter("id");
-            idString = idString.trim();
-            int eventId = Integer.parseInt(idString);
+            int reservId = Integer.parseInt(request.getParameter("reservId"));
 
             DbHelper dbh = new DbHelper();
-            ResultSet rs = dbh.getEvent(eventId);
+            ResultSet rs = dbh.getReservFullInfo(reservId);
 
             if (!(rs.next())) {
                 request.setAttribute("errorMensage", "El rs esta vacio.");
@@ -158,7 +150,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="CatalogoPaseos.jsp">Detalles del paseo</a>
+                        <a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a>
@@ -167,7 +159,7 @@
                         <a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Mis reservas</a>
+                        <a class="nav-link active" href="MisReservas.jsp">Detalles reserva</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
@@ -196,116 +188,37 @@
             </div>
         </div>
 
-        <div class="modal" id="eliminarPaseo">
+
+        <div class="modal" id="cancelarReserva">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Eliminar Paseo<i class="fas fa-trash-alt" style="color: red;
-                                                                 margin-left: 8px;"></i></h4>
+                        <h4 class="modal-title">Cancelar reserva</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <div class="modal-body">
-                        <i class="fas fa-exclamation-triangle" style="color: red;">
-
-                        </i>
-                        Estas seguro de que deseas eliminar este paseo? Si lo haces no hay vuelta atras...
-                        <i class="fas fa-exclamation-triangle" style="color: red;"></i>
+                        ¿Estás seguro de que deseas cancelar la reserva al evento?
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="Eliminar.jsp?id=<%=eventId%>" class="btn btn-danger">Eliminar</a>
+                        <a href="CancelarReserva.jsp?reservId=<%=rs.getInt("reserv_id")%>&eventId=<%=rs.getInt("event_id")%>" 
+                           class="btn btn-danger">Aceptar</a>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal" id="editarPaseo">
+        <div class="modal" id="modificarReserva">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="card-title text-center" style="font-size: 2rem;
-                            font-weight: bold;
-                            letter-spacing: 1px;">Editar Paseo</h1>
+                        <h1 class="card-title text-center" style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">Modificar reserva</h1>
                     </div>
 
                     <div class="modal-body">
-                        <form action="Editar.jsp">
-                            <div class="card mb-5 shadow-lg mx-auto mt-5" style="max-width: 500px;
-                                 border-radius: 10px;
-                                 overflow: hidden;">
-                                <div class="card-header bg-success text-white">
-                                    <img src="<%=rs.getString("e_photo")%>" class="card-img-top" alt="Evento Imagen" style="max-height: 250px;
-                                         object-fit:                                              cover;
-                                         border-radius: 10px 10px 0 0;" />
-                                </div>
-
-                                <div class="card-body p-4">
-
-                                    <h1 class="card-title text-center" style="font-size: 1.5rem;
-                                        font-weight: bold;
-                                        letter-spacing: 1px;">
-                                        <label for="e_name" class="form-label">Nombre del Evento:</label>
-                                        <input type="text" id="e_name" name="e_name" class="form-control" value="<%=rs.getString("e_name")%>" required />
-                                    </h1>
-
-                                    <div class="mb-3">
-                                        <label for="e_description" class="form-label"><i class="fas fa-info-circle" style="color: #5c6bc0;"></i> Descripción:                                               </label>
-                                        <textarea id="e_description" name="e_description" class="form-control" rows="4" required><%=rs.getString("e_description")%></textarea>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="e_date" class="form-label"><i class="fas fa-calendar-day" style="color: #ff7043;"></i> Fecha:</label>
-                                        <input type="date" id="e_date" name="e_date" class="form-control" value="<%=rs.getString("e_date")%>" required />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="e_ubication" class="form-label"><i class="fas fa-map-marker-alt" style="color: #26a69a;"></i> Ubicación:                                                </label>
-                                        <input type="text" id="e_ubication" name="e_ubication" class="form-control" value="<%=rs.getString("e_ubication")%>"                                                required />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="e_tickets" class="form-label"><i class="fas fa-ticket-alt" style="color: #ffca28;"></i> Entradas                                                        disponibles:</label>
-                                        <input type="number" id="e_tickets" name="e_tickets" class="form-control" value="<%=rs.getInt("e_tickets")%>" required                                              />
-                                    </div>
-
-                                    <input type="hidden" type="number" id="e_id" name="e_id" class="form-control" value="<%= rs.getInt("e_id")%>" readonly />
-                                </div>
-
-                                <div class="card-footer d-flex justify-content-between align-items-center p-3" style="background-color: #f8f9fa;
-                                     border-top: 1px                                        solid #ddd;">
-                                    <button type="submit" class="btn btn-success btn-lg" style="border-radius: 20px;
-                                            padding: 12px 20px;
-                                            font-size: 1rem;
-                                            flex: 1;
-                                            margin-right: 10px;">
-                                        <i class="fas fa-save"></i> <b>Guardar Cambios</b>
-                                    </button>
-
-                                    <a href="PaseoDetails.jsp?id=<%=eventId%>" class="btn btn-primary btn-lg" style="border-radius: 20px;
-                                       padding: 12px 20px;
-                                       font-size: 1rem;
-                                       flex: 1;">
-                                        <i class="fas fa-times-circle"></i> <b>Atras</b>
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal" id="reservarPaseo">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="card-title text-center" style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">Reservar paseo</h1>
-                    </div>
-
-                    <div class="modal-body">
-                        <form action="Reservar.jsp?eventId=<%=eventId%>">
+                        <form action="ModificarReserva.jsp">
                             <div class="card mb-5 shadow-lg mx-auto mt-5" style="max-width: 500px; border-radius: 10px; overflow: hidden;">
                                 <div class="card-header bg-success text-white">
                                     <img src="<%=rs.getString("e_photo")%>" class="card-img-top" alt="Evento Imagen" 
@@ -321,11 +234,13 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="r_tickets" class="form-label">Cantidad de entradas a reservar:</label>
-                                        <input type="number" id="r_tickets" name="r_tickets" class="form-control" value="1" required 
-                                               min="1" max="<%=rs.getInt("e_tickets")%>" />
-                                        <input type="hidden" id="eventId" name="eventId" value="<%=eventId%>" readonly/>
-                                        <input type="hidden" id="userId" name="userId" value="<%=userId%>" readonly/>
+                                        <label for="r_tickets" class="form-label">Entradas reservadas:</label>
+                                        <input type="number" id="r_tickets" name="r_tickets" class="form-control" value="<%=rs.getInt("r_tickets")%>" required 
+                                               min="1" max="<%=(rs.getInt("e_tickets") + rs.getInt("r_tickets"))%>" />
+
+                                        <input type="hidden" id="eventId" name="eventId" value="<%=rs.getString("event_id")%>" readonly/>
+                                        <input type="hidden" id="initialReTickets" name="initialReTickets" value="<%=rs.getInt("r_tickets")%>" readonly/>
+                                        <input type="hidden" id="reservId" name="reservId" value="<%=rs.getString("reserv_id")%>" readonly/>
                                         <input type="hidden" id="initialTickets" name="initialTickets" value="<%=rs.getInt("e_tickets")%>" readonly/>
                                     </div>
                                 </div>
@@ -333,13 +248,14 @@
                                 <div class="card-footer d-flex justify-content-between align-items-center p-3" 
                                      style="background-color: #f8f9fa; border-top: 1px solid #ddd;">
 
-                                    <button type="submit" class="btn btn-success btn-lg" 
+                                    <button type="submit" class="btn btn-warning btn-lg" 
                                             style="border-radius: 20px; padding: 12px 20px; font-size: 1rem; flex: 1; margin-right: 10px;">
-                                        <i class="fas fa-save"></i> <b>Reservar evento</b>
+                                        <i class="fas fa-save"></i> <b>Guardar cambio</b>
                                     </button>
 
-                                    <a href="PaseoDetails.jsp?id=<%=eventId%>" class="btn btn-primary btn-lg" 
-                                       style="border-radius: 20px; padding: 12px 20px; font-size: 1rem; flex: 1;">
+                                    <a href="#" class="btn btn-primary btn-lg" 
+                                       style="border-radius: 20px; padding: 12px 20px; font-size: 1rem; flex: 1;" 
+                                       data-bs-dismiss="modal">
                                         <i class="fas fa-times-circle"></i> <b>Cancelar</b>
                                     </a>
                                 </div>
@@ -349,7 +265,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="card mb-5 shadow-lg mx-auto mt-5" style="width: 600px;
              border-radius: 10px;
@@ -367,42 +282,30 @@
                 <p class="card-text"><i class="fas fa-info-circle" style="color: #5c6bc0;"></i> <b>Descripción:</b> <%=rs.getString("e_description")%></p>
                 <p class="card-text"><i class="fas fa-calendar-day" style="color: #ff7043;"></i> <b>Fecha:</b> <%=rs.getString("e_date")%></p>
                 <p class="card-text"><i class="fas fa-map-marker-alt" style="color: #26a69a;"></i> <b>Ubicación:</b> <%=rs.getString("e_ubication")%></p>
-                <p class="card-text"><i class="fas fa-ticket-alt" style="color: #ffca28;"></i> <b>Entradas disponibles:</b> <%=rs.getInt("e_tickets")%></p>
+                <p class="card-text"><i class="fas fa-ticket-alt" style="color: #ffca28;"></i> <b>Entradas reservadas:</b> <%=rs.getInt("r_tickets")%></p>
             </div>
 
             <div class="card-footer d-flex justify-content-between align-items-center p-3" style="background-color: #f8f9fa;
                  border-top: 1px solid #ddd;
                  gap: 10px;">
 
-                <a data-bs-toggle="modal" data-bs-target="#reservarPaseo" class="btn btn-success btn-lg" style="border-radius: 20px;
+                <a data-bs-toggle="modal" data-bs-target="#modificarReserva" class="btn btn-warning btn-lg" style="border-radius: 20px;
                    padding: 12px 20px;
                    font-size: 1rem;
                    flex: 1;">
-                    <i class="fas fa-check-circle"></i> <b>Reservar</b>
+                    <b>Modificar</b>
                 </a>
 
-                <% if (userId == rs.getInt("e_userId")) { %>
-
-                <a data-bs-toggle="modal" data-bs-target="#editarPaseo" class="btn btn-warning btn-lg" style="border-radius: 20px;
-                   padding: 12px 20px;
-                   font-size: 1rem;
-                   flex: 1;">
-                    <i class="fas fa-edit"></i> <b>Editar</b>
+                <a data-bs-toggle="modal" data-bs-target="#cancelarReserva" 
+                   class="btn btn-danger btn-lg" 
+                   style="border-radius: 20px; padding: 12px 20px; font-size: 1rem; flex: 1;" 
+                   <b>Cancelar reserva</b>
                 </a>
 
-                <a data-bs-toggle="modal" data-bs-target="#eliminarPaseo" class="btn btn-danger btn-lg" style="border-radius: 20px;
-                   padding: 12px 20px;
-                   font-size: 1rem;
-                   flex: 1;">
-                    <i class="fas fa-trash-alt"></i> <b>Eliminar</b>
-                </a>
-                <% }%>
-
-                <a href="CatalogoPaseos.jsp" class="btn btn-primary btn-lg" style="border-radius: 20px;
-                   padding: 12px 20px;
-                   font-size: 1rem;
-                   flex: 1;">
-                    <i class="fas fa-times-circle"></i> <b>Cerrar</b>
+                <a href="MisReservas.jsp" 
+                   class="btn btn-success btn-lg" 
+                   style="border-radius: 20px; padding: 12px 20px; font-size: 1rem; flex: 1;" 
+                   <b>Atras</b>
                 </a>
             </div>
         </div>

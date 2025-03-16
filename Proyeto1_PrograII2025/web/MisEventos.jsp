@@ -29,7 +29,7 @@
                         <a class="nav-link" href="PublicarEvento.jsp">Publicar paseos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MisEventos.jsp">Mis reservas</a>
+                        <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Historial.jsp">Mis publicaciones</a>

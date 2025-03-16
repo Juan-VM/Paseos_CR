@@ -134,7 +134,7 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="home.jsp">Home</a>
+                        <a class="nav-link" href="home.jsp">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a>
@@ -146,7 +146,7 @@
                         <a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Mis reservas</a>
+                        <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesión</a>
