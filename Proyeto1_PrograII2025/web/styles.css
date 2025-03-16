@@ -58,3 +58,8 @@ body {
 .evento-card button:hover {
     background-color: #0056b3;
 }
+
+.text-green-dark {
+    color: #145A32 !important; /* Fuerza el color verde oscuro */
+    font-weight: bold;
+}

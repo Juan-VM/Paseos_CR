@@ -1,4 +1,3 @@
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="app.dataBase.pckg.DbHelper"%>
 <%@page import="app.model.pckg.Event"%>
@@ -25,110 +24,241 @@
 %>
 <!DOCTYPE html>
 <html lang="es">
-    <html>
-        <head>
-            <title>Inicio Sesion</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-            <link href="WEB-INF/css.css" rel="stylesheet" type="text/css"/>
-            <link href="styles.css" rel="stylesheet" type="text/css"/>
+    <head>
+        <title>Inicio Sesion</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="WEB-INF/css.css" rel="stylesheet" type="text/css"/>
+        <link href="styles.css" rel="stylesheet" type="text/css"/>
 
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-            <style>
-                .btn-custom {
-                    font-weight: bold;
-                    font-size: 1.5rem;
-                    padding: 15px;
-                }
-            </style>
-        </head>
-        <body>
+        <style>
+            /* Establecer la imagen de fondo */
+            body {
+                background-image: url('img/cafe.jpg'); /* Cambia la ruta si es necesario */
+                background-size: cover;
+                background-position: center;
+                color: white;
+                font-family: 'Arial', sans-serif;
+                padding-top: 50px;
+            }
 
-            <%
-                String email = (String) session.getAttribute("email");
-                if (email == null) {
-                    request.setAttribute("errorMensage", "La sesion esta inactiva, debes iniciar sesion.");
-                    RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
-                    rd.forward(request, response);
-                }
-            %>
-            <div class="p-5 bg-primary text-white text-center">
-                <h1>Paseos CR</h1>
-                <p>Encuentra tu paseo ideal!</p> 
+            /* Encabezado */
+            .header {
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 40px 0;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            .header p {
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+
+            /* Estilos del Navbar */
+            .navbar {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #FFD700; /* Color dorado al pasar el mouse */
+            }
+
+            /* Nuevo estilo para el enlace "Cerrar sesión" */
+            .navbar-nav .nav-link[data-bs-target="#myModal"] {
+                color: red !important;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link[data-bs-target="#myModal"]:hover {
+                color: darkred !important;
+            }
+
+            /* Estilos de los botones personalizados */
+            .btn-custom {
+                font-weight: bold;
+                font-size: 1.2rem;
+                padding: 15px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 5px;
+                text-transform: uppercase;
+            }
+
+            .btn-custom:hover {
+                background-color: #0056b3;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Diseño de las tarjetas */
+            .card {
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease;
+                margin-bottom: 30px;
+            }
+
+            .card:hover {
+                transform: translateY(-10px);
+            }
+
+            .card-body {
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 20px;
+                color: white !important; /* Hace que todo el texto dentro de la tarjeta sea blanco */
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: white !important; /* Título en blanco */
+            }
+
+            .card-text {
+                font-size: 1.1rem;
+                font-weight: 300;
+                color: white !important; /* Descripción en blanco */
+            }
+
+            .btn-primary {
+                font-size: 1.2rem;
+                font-weight: bold;
+                padding: 12px;
+                background-color: #28a745;
+                border: none;
+            }
+
+            .btn-primary:hover {
+                background-color: #218838;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Mejorar la visibilidad del modal */
+            .modal-header {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .modal-body {
+                color: black;
+                font-weight: bold;
+            }
+
+            .modal-footer .btn-danger {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .modal-footer .btn-danger:hover {
+                background-color: #c82333;
+            }
+
+            .modal-content {
+                border-radius: 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <%
+            String email = (String) session.getAttribute("email");
+            if (email == null) {
+                request.setAttribute("errorMensage", "La sesion esta inactiva, debes iniciar sesion.");
+                RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
+                rd.forward(request, response);
+            }
+        %>
+
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>Paseos CR</h1>
+            <p>Encuentra tu paseo ideal!</p>
+        </div>
+
+        <!-- Barra de navegación -->
+        <nav class="navbar navbar-expand-sm navbar-dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="home.jsp">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="CatalogoPaseos.jsp">Paseos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MisEventos.jsp">Mis reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historial.jsp">Mis publicaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
+                    </li>
+                </ul>
             </div>
+        </nav>
 
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <div class="container-fluid">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Home.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="CatalogoPaseos.jsp">Paseos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="MisEventos.jsp">Mis paseos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Historial.jsp">Historial</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+        <!-- Modal para confirmar cierre de sesión -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cerrar sesion</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Cerrar sesion</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas cerrar sesión?
+                    </div>
 
-                        <div class="modal-body">
-                            Estas seguro de que deseas cerrar sesion?
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                            <a href="Logout.jsp" class="btn btn-danger">Aceptar</a>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                        <a href="Home.html" class="btn btn-danger">Aceptar</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="text-center">
-                <div class="container mt-5">
-                    <div class="row justify-content-center">
-                        <%
-                            for (Event event : events) {
-                        %>
-                        <div class="col-auto mb-5">
-                            <div class="card shadow-sm" style="width:20rem;height:25rem">
-                                <img src="<%=event.getPhoto()%>" class="card-img-top" />
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title"><%=event.getName()%></h5>
-                                    <p class="card-text">Descripcion: <%=event.getDescription()%></p>
-                                    <div class="mt-auto">
-                                        <a href="PaseoDetails.jsp?id=<%=event.getId()%>" class="btn btn-primary w-100"><b>Ver detalles</b></a>
-                                    </div>
-                                </div>
+        <!-- Contenedor de eventos -->
+        <div class="container mt-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-center">
+                <%
+                    for (Event event : events) {
+                %>
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src="<%=event.getPhoto()%>" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title"><%=event.getName()%></h5>
+                            <p class="card-text">Descripcion: <%=event.getDescription()%></p>
+                            <div class="mt-auto">
+                                <a href="PaseoDetails.jsp?id=<%=event.getId()%>" class="btn btn-primary w-100"><b>Ver detalles</b></a>
                             </div>
                         </div>
-                        <%
-                            }
-                        %>
                     </div>
                 </div>
+                <%
+                    }
+                %>
             </div>
+        </div>
 
-        </body>
-    </html>
+    </body>
+</html>

@@ -9,6 +9,15 @@ create table usuarios(
     PRIMARY KEY (id)
 );
 
+describe usuarios;
+select * from usuarios;
+
+create table reservas(
+
+);
+
+delete from paseos where e_id = 1;
+
 create table paseos(
 	e_id int not null AUTO_INCREMENT,
     e_userId int not null,
@@ -22,9 +31,17 @@ create table paseos(
    
 );
 
-INSERT INTO usuarios (user_name, email, pwd, user_status) 
-VALUES ("Erick", "ErickMora@gmail.com", "123", 1);
+insert into paseos(e_userId, e_name, e_description, e_date, e_photo, e_ubication, e_tickets)
+VALUES (1, "playa del coco", "Disfruta del sol y el mar en este paraíso tropical.", "15/03/2025", "img/Playa-del-Coco1.jpg", "PLaya del Coco", 5);
+
+insert into paseos(e_userId, e_name, e_description, e_date, e_photo, e_ubication, e_tickets)
+VALUES (1, "Baldi", "Relájate en las mejores aguas termales del país.", "15/03/2025", "img/Slider-19.jpg", "La fortuna", 5);
+
+insert into paseos(e_userId, e_name, e_description, e_date, e_photo, e_ubication, e_tickets)
+VALUES (1, "Monteverde", "Explora el bosque nuboso y su biodiversidad única.", "15/03/2025", "img/Monteverde-Cloud-Forest-e1688155957573.jpeg", "Monteverde", 5);
 
 
+INSERT INTO usuarios (user_name, email, pwd, user_status)
+VALUES ("Marco", "marcoesteban777@gmail.com", "123", 1);
 
 
