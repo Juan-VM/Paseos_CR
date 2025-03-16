@@ -48,7 +48,5 @@ VALUES (1, "Monteverde", "Explora el bosque nuboso y su biodiversidad única.", 
 INSERT INTO usuarios (user_name, email, pwd, user_status)
 VALUES ("Marco", "marcoesteban777@gmail.com", "123", 1);
 
-INSERT INTO reservas(event_id,user_id,r_tickets) VALUES (1, 2, 10);
 
-Select * from reservas;
 
