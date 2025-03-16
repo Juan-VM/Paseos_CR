@@ -76,7 +76,7 @@
 
             .hero-section {
                 background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-                padding: 100px 0;
+                padding: 42px;
                 text-align: center;
             }
 
@@ -111,6 +111,30 @@
             .modal-content {
                 border-radius: 10px;
             }
+            
+            .navbar {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #FFD700; /* Color dorado al pasar el mouse */
+            }
+
+            /* Nuevo estilo para el enlace "Cerrar sesión" */
+            .navbar-nav .nav-link[data-bs-target="#myModal"] {
+                color: red !important;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link[data-bs-target="#myModal"]:hover {
+                color: darkred !important;
+            }
+            
         </style>
     </head>
     <body>

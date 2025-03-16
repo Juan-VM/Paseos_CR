@@ -79,7 +79,7 @@
 
             .hero-section {
                 background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-                padding: 100px 0;
+                padding: 38px;
                 text-align: center;
             }
 
@@ -91,6 +91,25 @@
             .hero-section p {
                 font-size: 1.2rem;
                 color: #FFD700;
+            }
+            
+            .navbar-nav .nav-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #FFD700; /* Color dorado al pasar el mouse */
+            }
+
+            /* Nuevo estilo para el enlace "Cerrar sesión" */
+            .navbar-nav .nav-link[data-bs-target="#myModal"] {
+                color: red !important;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link[data-bs-target="#myModal"]:hover {
+                color: darkred !important;
             }
             .modal-header {
                 background-color: #dc3545;
@@ -164,7 +183,7 @@
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Mis reservas</a>
+                        <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesion</a>
