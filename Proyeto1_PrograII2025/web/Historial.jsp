@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Historial</title>
+        <title>Mis reservas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="styles.css" rel="stylesheet" type="text/css"/>
@@ -28,10 +28,10 @@
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MisEventos.jsp">Mis paseos</a>
+                        <a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Historial</a>
+                        <a class="nav-link" href="Historial.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Cerrar sesion</a>

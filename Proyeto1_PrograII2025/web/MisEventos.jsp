@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="">Home</a>
+                        <a class="nav-link active" href="home.jsp">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Eventos.jsp">Paseos</a>
@@ -29,13 +29,13 @@
                         <a class="nav-link" href="PublicarEvento.jsp">Publicar paseos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MisEventos.jsp">Mis paseos</a>
+                        <a class="nav-link" href="MisEventos.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Historial</a>
+                        <a class="nav-link" href="Historial.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Cerrar sesion</a>
+                        <a class="nav-link" href="Logout.jsp">Cerrar sesion</a>
                     </li>
                 </ul>
             </div>

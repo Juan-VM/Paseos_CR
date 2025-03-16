@@ -38,7 +38,7 @@
                 session.setAttribute("userName", rs.getString("user_name"));
                 dbh.close();
 
-                RequestDispatcher rd = request.getRequestDispatcher("Home.html");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
                 rd.forward(request, response);
                 return;
             } else {

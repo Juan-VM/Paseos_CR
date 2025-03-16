@@ -7,6 +7,6 @@
         session.invalidate();
     }
 
-    RequestDispatcher rd = request.getRequestDispatcher("Login.html");
+    RequestDispatcher rd = request.getRequestDispatcher("Home.html");
     rd.forward(request, response);
 %>
