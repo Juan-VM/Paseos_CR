@@ -22,10 +22,11 @@
         <style>
             /* Establecer la imagen de fondo */
             body {
-                background-image: url('img/cafe.jpg'); /* Cambia la ruta si es necesario */
+                background-image: url('img/tucan_1.jpeg'); /* Cambia la ruta si es necesario */
                 background-size: cover;
                 background-position: center;
                 color: white;
+                
                 font-family: 'Arial', sans-serif;
                 padding-top: 50px;
             }
