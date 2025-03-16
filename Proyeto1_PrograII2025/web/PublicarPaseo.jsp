@@ -23,22 +23,29 @@
                 font-family: 'Arial', sans-serif;
             }
 
+            /* Estilos del Navbar */
             .navbar {
-                background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente para el navbar */
-                border-bottom: 2px solid #FF6347;
+                background-color: rgba(0, 0, 0, 0.7);
             }
 
-            .navbar-nav .nav-link {
-                color: #FFD700 !important;
+            /* Estilos de los botones personalizados */
+            .btn-custom {
                 font-weight: bold;
+                font-size: 1.2rem;
+                padding: 15px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 5px;
+                text-transform: uppercase;
             }
 
-            .navbar-nav .nav-link:hover {
-                color: #FF6347 !important;
+            .btn-custom:hover {
+                background-color: #0056b3;
+                transition: background-color 0.3s ease;
             }
 
             .hero-section {
-                background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+                background: rgba(0, 0, 0, 0.6);
                 padding: 100px 0;
                 text-align: center;
             }
@@ -46,6 +53,7 @@
             .hero-section h1 {
                 font-size: 3.5rem;
                 color: #FF6347;
+                font-weight: bold;
             }
 
             .hero-section p {
@@ -141,9 +149,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="PublicarPaseo.jsp">Publicar paseo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>

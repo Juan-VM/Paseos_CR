@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             body {
-                background: url('img/sendero.jpg') no-repeat center center fixed;
+                background: url('img/rioceleste.jpg') no-repeat center center fixed;
                 background-size: cover;
                 color: white;
             }
@@ -162,9 +162,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Historial.jsp">Mis reservas</a>

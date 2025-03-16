@@ -203,9 +203,6 @@
                         <a class="nav-link" href="PublicarPaseo.jsp">Publicar paseos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Historial.jsp">Mis publicaciones</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="MisReservas.jsp">Mis reservas</a>
                     </li>
                     <li class="nav-item">

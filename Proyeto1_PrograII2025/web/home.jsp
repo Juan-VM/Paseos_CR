@@ -131,7 +131,6 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a></li>
                     <li class="nav-item"><a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="MisEventos.jsp">Mis publicaciones</a></li>
                     <li class="nav-item"><a class="nav-link" href="MisReservas.jsp">Mis reservas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Cerrar sesión</a></li>
                 </ul>
