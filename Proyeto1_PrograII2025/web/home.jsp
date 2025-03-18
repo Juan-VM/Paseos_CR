@@ -19,7 +19,7 @@
             /* Estilos para el encabezado */
             .hero-section {
                 text-align: center;
-                padding: 31px;
+                padding: 30px;
                 background: rgba(0, 0, 0, 0.6); /* Fondo negro transparente */
                 border-bottom: 4px solid #FFD700; /* Borde dorado en la parte inferior */
                

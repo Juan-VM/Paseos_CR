@@ -34,7 +34,7 @@
             /* Encabezado */
             .header {
                 background-color: rgba(0, 0, 0, 0.5);
-                padding: 46px 0; /* Aumentar padding si es necesario */
+                padding: 45px 0; /* Aumentar padding si es necesario */
                 text-align: center;
                 position: relative;
                 top: 0;
