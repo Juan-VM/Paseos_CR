@@ -103,6 +103,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="home.jsp">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a></li>
                     <li class="nav-item"><a class="nav-link active" href="PublicarPaseo.jsp">Publicar paseo</a></li>
                     <li class="nav-item"><a class="nav-link" href="MisReservas.jsp">Mis reservas</a></li>

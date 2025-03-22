@@ -6,6 +6,8 @@
         <title>Paseos Naturales CR</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        
         <style>
             body {
                 background-image: url('img/lapa.jpg'); /* Fondo que hace que se vea atractivo */
@@ -163,6 +165,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="home.jsp">Home</a>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a></li>
                     <li class="nav-item"><a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a></li>
                     <li class="nav-item"><a class="nav-link" href="MisReservas.jsp">Mis reservas</a></li>

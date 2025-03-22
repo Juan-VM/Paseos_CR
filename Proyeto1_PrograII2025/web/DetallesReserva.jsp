@@ -172,6 +172,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="home.jsp">Home</a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="perfil.html">Perfil</a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a>
