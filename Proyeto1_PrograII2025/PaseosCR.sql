@@ -51,3 +51,8 @@ VALUES ("Marco", "marcoesteban777@gmail.com", "123", 1);
 SELECT * FROM reservas INNER JOIN paseos ON reservas.event_id = paseos.e_id WHERE reservas.user_id = 2;
 UPDATE paseos SET e_tickets = 200 WHERE e_id = 7;
 SELECT * FROM paseos;
+
+SHOW DATABASES;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Admin$1234';
+FLUSH PRIVILEGES;
