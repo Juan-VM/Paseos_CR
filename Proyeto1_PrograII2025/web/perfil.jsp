@@ -3,9 +3,6 @@
 <%@page import="java.sql.*, javax.servlet.http.*, javax.servlet.*"%>
 
 
-
-
-
 <%
     HttpSession sesion = request.getSession();
     String usuario = (String) sesion.getAttribute("usuario");
