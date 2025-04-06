@@ -156,6 +156,17 @@
             <a href="Login.html" class="btn btn-primary">Iniciar sesión</a>
             <a href="Registration.html" class="btn btn-primary">Registrarse</a>
             <% } %>
+            <% int id = (int) 
+                    session.getAttribute("userId"); 
+            
+           
+            
+            
+            
+            
+            
+            
+            %>
         </div>
 
         <!-- Barra de navegación -->
@@ -165,7 +176,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="home.jsp">Home</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="perfil.jsp?id=<%=id%>">Perfil</a></li>
+                    
                     <li class="nav-item"><a class="nav-link" href="CatalogoPaseos.jsp">Paseos</a></li>
                     <li class="nav-item"><a class="nav-link" href="PublicarPaseo.jsp">Publicar paseo</a></li>
                     <li class="nav-item"><a class="nav-link" href="MisReservas.jsp">Mis reservas</a></li>

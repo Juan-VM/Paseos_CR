@@ -1,8 +1,3 @@
-<%-- 
-    Document   : MisReservas
-    Created on : 16 mar 2025, 7:39:02
-    Author     : Charly Cimino
---%>
 
 <%@page import="app.model.pckg.Reserv"%>
 <%@page import="app.dataBase.pckg.DbHelper"%>

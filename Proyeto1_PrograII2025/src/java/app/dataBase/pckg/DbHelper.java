@@ -104,9 +104,23 @@ public class DbHelper {
         }
     }
 
+    //usuarios
     public ResultSet getUsers() throws SQLException {
         try {
             PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM Users;");
+            ResultSet resultset = predStatement.executeQuery();
+            return resultset;
+        } catch (SQLException ex) {
+            //Logger.getLogger(databaseHelper.class.getName()).log(Level.ERROR, null, ex);
+        }
+        return null;
+    }
+
+    //Boton de perfil
+    public ResultSet getUser(int id) throws SQLException {
+        try {
+            PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM usuarios WHERE id=?;");
+            predStatement.setInt(1, id);
             ResultSet resultset = predStatement.executeQuery();
             return resultset;
         } catch (SQLException ex) {
@@ -252,7 +266,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public ResultSet getReserves(int userId) throws SQLException {
         try {
             PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas INNER JOIN paseos ON reservas.event_id = paseos.e_id WHERE reservas.user_id = ?;");
@@ -265,7 +279,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public ResultSet getReserv(int reservId) throws SQLException {
         try {
             PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas WHERE reserv_id = ?;");
@@ -278,7 +292,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public ResultSet getReservFullInfo(int reservId) throws SQLException {
         try {
             PreparedStatement predStatement = conn.prepareStatement("SELECT * FROM reservas INNER JOIN paseos ON reservas.event_id = paseos.e_id WHERE reservas.reserv_id = ?;");
@@ -291,7 +305,7 @@ public class DbHelper {
         }
         return null;
     }
-    
+
     public boolean cancelarReserva(int reservId) throws SQLException {
         try {
             PreparedStatement predStatement
@@ -307,7 +321,7 @@ public class DbHelper {
             return false;
         }
     }
-    
+
     public boolean actualizarReserva(int reservId, int newTickets) throws SQLException {
         try {
             PreparedStatement predStatement
@@ -324,4 +338,18 @@ public class DbHelper {
             return false;
         }
     }
+
+    public boolean ActualizarPerfil(String email, String nombre, String pwd, int id) throws SQLException {
+        String query = "UPDATE usuarios SET user_name = ?, pwd = ?, email = ? WHERE id = ?";
+
+        try (PreparedStatement predStatement = conn.prepareStatement(query)) {
+            predStatement.setString(1, nombre);
+            predStatement.setString(2, pwd);
+            predStatement.setString(3, email);
+            predStatement.setInt(4, id);
+            predStatement.executeUpdate();
+            return true;
+        }
+    }
+
 }
