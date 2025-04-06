@@ -21,6 +21,9 @@
                 rs.getInt("e_tickets"));
         events.add(event);
     }
+    int id2 = (int)session.getAttribute("userId");
+
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -201,9 +204,7 @@
                         <a class="nav-link " href="home.jsp">Home</a>
                     </li>
                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="perfil.html">Perfil</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="perfil.jsp?id=<%=id2%>">Perfil</a></li>
 
                     <li class="nav-item">
                         <a class="nav-link active" href="CatalogoPaseos.jsp">Paseos</a>

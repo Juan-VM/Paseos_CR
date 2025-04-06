@@ -13,14 +13,6 @@
             String email = request.getParameter("txtEmail");
             String pswd = request.getParameter("txtPwd");
 
-            
-            if (email == null || !email.endsWith("@gmail.com")) {
-                request.setAttribute("errorMensage", "El correo electrónico debe ser de dominio @gmail.com");
-                RequestDispatcher rd = request.getRequestDispatcher("ErrorHandler.jsp");
-                rd.forward(request, response);
-                return; 
-            }
-
             DbHelper dbh = new DbHelper();
 
             request.getSession(false);
