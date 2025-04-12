@@ -207,7 +207,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="Logout.jspl" class="btn btn-danger">Aceptar</a>
+                        <a href="Logout.jsp" class="btn btn-danger">Aceptar</a>
                     </div>
                 </div>
             </div>

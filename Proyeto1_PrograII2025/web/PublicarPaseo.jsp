@@ -6,7 +6,6 @@
     DbHelper dbh = new DbHelper();
     int id2 = (int)session.getAttribute("userId");
 
-
 %>
 <!DOCTYPE html>
 <html>
