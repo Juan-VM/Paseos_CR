@@ -163,7 +163,7 @@
 
                         <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Actualizar</button>
 
-                        <!-- Añadir navegacion -->
+                        
 
                     </form>
                 </div>
