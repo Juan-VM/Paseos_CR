@@ -140,6 +140,7 @@
     <body>
         <%
             String email = (String) session.getAttribute("email");
+            int userId = (int) session.getAttribute("userId");
 
             if (email == null) {
                 request.setAttribute("errorMensage", "La sesion esta inactiva, debes iniciar sesion.");
@@ -174,7 +175,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="perfil.html">Perfil</a>
+                        <a class="nav-link" href="perfil.jsp?id=<%=userId%>">Perfil</a>
                     </li>
 
                     <li class="nav-item">

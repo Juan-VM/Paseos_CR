@@ -177,7 +177,7 @@
                     </li>
                     
                    <li class="nav-item">
-                       <a class="nav-link" href="perfil.html">Perfil</a>
+                       <a class="nav-link" href="perfil.jsp?id=<%=userId%>">Perfil</a>
                    </li>
 
                     <li class="nav-item">
